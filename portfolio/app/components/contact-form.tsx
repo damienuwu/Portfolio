@@ -24,36 +24,36 @@ export default function ContactForm() {
   }
 
   return (
-    <Card className="p-6">
+    <Card className="p-4 max-w-lg mx-auto shadow-md">
       <form 
         onSubmit={(e) => { 
           e.preventDefault(); 
           handleSubmit(new FormData(e.target as HTMLFormElement)) 
         }} 
-        className="space-y-4"
+        className="space-y-3"
       >
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-2">
+          <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">
             Name
           </label>
-          <Input id="name" name="name" required />
+          <Input id="name" name="name" required className="h-10 text-sm" />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2">
+          <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">
             Email
           </label>
-          <Input id="email" name="email" type="email" required />
+          <Input id="email" name="email" type="email" required className="h-10 text-sm" />
         </div>
         <div>
-          <label htmlFor="message" className="block text-sm font-medium mb-2">
+          <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">
             Message
           </label>
-          <Textarea id="message" name="message" required />
+          <Textarea id="message" name="message" required className="h-24 text-sm" />
         </div>
-        <Button type="submit" className="w-full" disabled={pending}>
+        <Button type="submit" className="w-full py-2.5 text-sm font-semibold" disabled={pending}>
           {pending ? "Sending..." : "Send Message"}
         </Button>
-        {message && <p className="text-sm text-center mt-4 text-muted-foreground">{message}</p>}
+        {message && <p className="text-xs text-center mt-2 text-muted-foreground">{message}</p>}
       </form>
     </Card>
   )
