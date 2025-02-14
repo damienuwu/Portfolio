@@ -4,28 +4,34 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useState } from "react"
+import { useState, useTransition } from "react"
 import { submitContactForm } from "../actions"
 
 export default function ContactForm() {
-  const [pending, setPending] = useState(false)
   const [message, setMessage] = useState("")
+  const [pending, startTransition] = useTransition()
 
   async function handleSubmit(formData: FormData) {
-    setPending(true)
-    try {
-      const response = await submitContactForm(formData)
-      setMessage(response.message)
-    } catch (error) {
-      setMessage("Something went wrong. Please try again.")
-    } finally {
-      setPending(false)
-    }
+    startTransition(async () => {
+      try {
+        const response = await submitContactForm(formData)
+        setMessage(response.message)
+      } catch (error) {
+        console.error("Form Submission Error:", error)
+        setMessage("Something went wrong. Please try again.")
+      }
+    })
   }
 
   return (
     <Card className="p-6">
-      <form action={handleSubmit} className="space-y-4">
+      <form 
+        onSubmit={(e) => { 
+          e.preventDefault(); 
+          handleSubmit(new FormData(e.target as HTMLFormElement)) 
+        }} 
+        className="space-y-4"
+      >
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-2">
             Name
@@ -52,4 +58,3 @@ export default function ContactForm() {
     </Card>
   )
 }
-

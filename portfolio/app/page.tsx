@@ -91,7 +91,7 @@ export default function Page() {
                   <div className="flex-1 space-y-4">
                     <h3 className="text-2xl font-semibold">Eiman Damien</h3>
                     <p className="text-muted-foreground">
-                      I'm a passionate student is currently pursuing to become a full-stack developer. I love
+                      I&apos;m a passionate student is currently pursuing to become a full-stack developer. I love
                       solving complex problems and creating user-friendly interfaces that make a difference.
                     </p>
                     {/* <p className="text-muted-foreground">
