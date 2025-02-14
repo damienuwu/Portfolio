@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import ContactForm from "./components/contact-form"
 import ProjectCard from "./components/project-card"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function Page() {
   return (
@@ -20,6 +21,9 @@ export default function Page() {
               <Link href="#projects" className="transition-colors hover:text-primary">Projects</Link>
               <Link href="#contact" className="transition-colors hover:text-primary">Contact</Link>
             </nav>
+          </div>
+          <div className="ml-auto flex items-center space-x-4">
+            <ThemeToggle />
           </div>
         </div>
       </header>
